@@ -1,0 +1,7 @@
+/target/*
+/sprites/*
+/lib/*
+*.png
+info/*
+*.class
+*.ico
