@@ -18,6 +18,7 @@ import java.util.List;
 public class ChessModel implements IChess
 {
     private static ChessModel instance;
+    private static Board currentBoard;
     
     private ChessModel()
     {
@@ -29,7 +30,7 @@ public class ChessModel implements IChess
         if(ChessModel.instance == null)
         {
             ChessModel.instance = new ChessModel();
-            Board curentBoard = new Board();
+            currentBoard = new Board();
         }
         return ChessModel.instance;
     }
