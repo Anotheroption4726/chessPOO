@@ -5,3 +5,5 @@
 info/*
 *.class
 *.ico
+
+\.DS_Store
