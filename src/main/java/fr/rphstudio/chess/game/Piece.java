@@ -17,6 +17,12 @@ public class Piece
     private ChessColor color;
     private ChessType type;
     
+    public Piece(ChessColor pickedColor, ChessType pickedType)
+    {
+        this.color = pickedColor;
+        this.type = pickedType;
+    }
+    
     public ChessColor getChessColor ()
     {
         return this.color;
