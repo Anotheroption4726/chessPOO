@@ -29,6 +29,7 @@ public class ChessModel implements IChess
         if(ChessModel.instance == null)
         {
             ChessModel.instance = new ChessModel();
+            Board curentBoard = new Board();
         }
         return ChessModel.instance;
     }
