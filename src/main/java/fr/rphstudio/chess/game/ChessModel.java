@@ -38,6 +38,7 @@ public class ChessModel implements IChess
     @Override
     public void reinit()
     {
+        System.out.println("reinit");
         currentBoard = new Board();
     }
     
@@ -93,8 +94,9 @@ public class ChessModel implements IChess
     }
 
     @Override
-    public List<ChessPosition> getPieceMoves(ChessPosition p) {
-        return new ArrayList<ChessPosition>(); 
+    public List<ChessPosition> getPieceMoves(ChessPosition p)
+    {
+        return currentBoard.getMoveAvailableFromBoard(p);
     }
 
     @Override

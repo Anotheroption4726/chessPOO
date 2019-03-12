@@ -9,6 +9,8 @@ import fr.rphstudio.chess.interf.IChess;
 import fr.rphstudio.chess.interf.IChess.ChessColor;
 import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import fr.rphstudio.chess.interf.IChess.ChessType;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -73,7 +75,7 @@ public class Board
                 else{
                     continue;
                 }
-                
+                System.out.println(i+"-"+j);
                 table[i][j] = new Piece(color, type);
             }
         }
@@ -95,5 +97,10 @@ public class Board
         else{
             return this.table[p.y][p.x].getChessType();
         }
+    }
+    
+    public List<ChessPosition> getMoveAvailableFromBoard(ChessPosition p)
+    {    
+        return this.table[p.y][p.x].getMoveAvailableFromPiece(p);
     }
 }

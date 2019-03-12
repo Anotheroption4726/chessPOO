@@ -7,6 +7,9 @@ package fr.rphstudio.chess.game;
 
 import fr.rphstudio.chess.interf.IChess.ChessColor;
 import fr.rphstudio.chess.interf.IChess.ChessType;
+import fr.rphstudio.chess.interf.IChess.ChessPosition;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -31,5 +34,12 @@ public class Piece
     public ChessType getChessType()
     {
         return this.type;
+    }
+    
+    public List<ChessPosition> getMoveAvailableFromPiece(ChessPosition p)
+    {    
+        List<ChessPosition> noobTest = new ArrayList<ChessPosition>();
+        noobTest.add(new ChessPosition(p.x, p.y - 1));
+        return noobTest;
     }
 }
