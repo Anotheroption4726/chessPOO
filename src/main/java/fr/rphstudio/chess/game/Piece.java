@@ -19,6 +19,7 @@ public class Piece
 {
     private ChessColor color;
     private ChessType type;
+    private IMove pieceMove;
     
     public Piece(ChessColor pickedColor, ChessType pickedType)
     {

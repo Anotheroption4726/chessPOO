@@ -13,6 +13,6 @@ import java.util.ArrayList;
  * @author kotusikludovic
  */
 public interface IMove {
-    public ArrayList<ChessPosition> getPossibleMoves(ChessPosition pos, Board brd);
+    public ArrayList<ChessPosition> getPossibleMoves(ChessPosition pos, Board gameBoard);
 }
 
