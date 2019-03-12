@@ -36,7 +36,9 @@ public class ChessModel implements IChess
     }
     
     @Override
-    public void reinit() {
+    public void reinit()
+    {
+        currentBoard = new Board();
     }
     
     @Override
