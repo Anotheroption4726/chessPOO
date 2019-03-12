@@ -18,7 +18,7 @@ public class Board
 {
     private Piece[][] table = new Piece[8][8];
     
-    public Board ()
+    public Board()
     {
         for (int i = 0; i < IChess.BOARD_HEIGHT; i++)
         {
@@ -35,6 +35,8 @@ public class Board
                     case IChess.BOARD_POS_Y_WHITE_PAWNS:
                         color = ChessColor.CLR_WHITE;
                         break;
+                    default:
+                        continue;
                 }
                 
                 ChessType type = null;
@@ -69,7 +71,7 @@ public class Board
                 }
                 
                 else{
-                    type = null;
+                    continue;
                 }
                 
                 table[i][j] = new Piece(color, type);
@@ -78,12 +80,20 @@ public class Board
     }
     
     public ChessColor getBoardPieceColor(ChessPosition p){
-        return this.table[p.y][p.x].getChessColor();
-        //return ChessColor.CLR_BLACK;
+        if(this.table[p.y][p.x] == null){
+            return null;
+        }
+        else{
+            return this.table[p.y][p.x].getChessColor();
+        }
     }
     
     public ChessType getBoardPieceType(ChessPosition p){
-        return this.table[p.y][p.x].getChessType();
-        //return ChessType.TYP_KING;
+        if(this.table[p.y][p.x] == null){
+            return null;
+        }
+        else{
+            return this.table[p.y][p.x].getChessType();
+        }
     }
 }
