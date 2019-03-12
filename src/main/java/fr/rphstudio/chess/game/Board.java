@@ -38,45 +38,52 @@ public class Board
                 }
                 
                 ChessType type = null;
-                switch(j){
-                    case IChess.BOARD_POS_X_QUEENSIDE_ROOK:
-                    case IChess.BOARD_POS_X_KINGSIDE_ROOK:
-                        type = ChessType.TYP_ROOK;
-                        break;
-                                
-                    case IChess.BOARD_POS_X_QUEENSIDE_KNIGHT:
-                    case IChess.BOARD_POS_X_KINGSIDE_KNIGHT:
-                        type = ChessType.TYP_KNIGHT;
-                        break;
-                    
-                    case IChess.BOARD_POS_X_QUEENSIDE_BISHOP:
-                    case IChess.BOARD_POS_X_KINGSIDE_BISHOP:
-                        type = ChessType.TYP_BISHOP;
-                        break;
-                        
-                    case IChess.BOARD_POS_X_QUEEN:
-                        type = ChessType.TYP_QUEEN;
-                        break;
-                        
-                    case IChess.BOARD_POS_X_KING:
-                        type = ChessType.TYP_KING;
+                if(i == IChess.BOARD_POS_Y_BLACK_PIECES || i == IChess.BOARD_POS_Y_WHITE_PIECES){
+                    switch(j){
+                        case IChess.BOARD_POS_X_QUEENSIDE_ROOK:
+                        case IChess.BOARD_POS_X_KINGSIDE_ROOK:
+                            type = ChessType.TYP_ROOK;
+                            break;
+
+                        case IChess.BOARD_POS_X_QUEENSIDE_KNIGHT:
+                        case IChess.BOARD_POS_X_KINGSIDE_KNIGHT:
+                            type = ChessType.TYP_KNIGHT;
+                            break;
+
+                        case IChess.BOARD_POS_X_QUEENSIDE_BISHOP:
+                        case IChess.BOARD_POS_X_KINGSIDE_BISHOP:
+                            type = ChessType.TYP_BISHOP;
+                            break;
+
+                        case IChess.BOARD_POS_X_QUEEN:
+                            type = ChessType.TYP_QUEEN;
+                            break;
+
+                        case IChess.BOARD_POS_X_KING:
+                            type = ChessType.TYP_KING;
+                    }
                 }
                 
-               if(color==null){
-                   table[i][j] = null;
-               }
-               else{
-                   table[i][j] = new Piece(color, type);
-               }
+                else if(i == IChess.BOARD_POS_Y_BLACK_PAWNS || i == IChess.BOARD_POS_Y_WHITE_PAWNS){
+                    type = ChessType.TYP_PAWN;
+                }
+                
+                else{
+                    type = null;
+                }
+                
+                table[i][j] = new Piece(color, type);
             }
         }
     }
     
     public ChessColor getPieceColor(ChessPosition p){
-        return ChessColor.CLR_BLACK;
+        return this.table[p.y][p.x].getChessColor();
+        //return ChessColor.CLR_BLACK;
     }
     
     public ChessType getPieceType(ChessPosition p){
-        return ChessType.TYP_KING;
+        return this.table[p.y][p.x].getChessType();
+        //return ChessType.TYP_KING;
     }
 }

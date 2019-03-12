@@ -23,12 +23,12 @@ public class Piece
         this.type = pickedType;
     }
     
-    public ChessColor getChessColor ()
+    public ChessColor getChessColor()
     {
         return this.color;
     }
     
-    public ChessType getChessType ()
+    public ChessType getChessType()
     {
         return this.type;
     }
