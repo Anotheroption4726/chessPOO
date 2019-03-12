@@ -36,7 +36,10 @@ public class ChessModel implements IChess
     }
     
     @Override
-    public void reinit() {
+    public void reinit()
+    {
+        System.out.println("reinit");
+        currentBoard = new Board();
     }
     
     @Override
@@ -47,22 +50,53 @@ public class ChessModel implements IChess
 
     @Override
     public ChessType getPieceType(ChessPosition p) throws EmptyCellException, OutOfBoardException {
-        throw new EmptyCellException();
+        if(p.x<0 || p.x >= IChess.BOARD_WIDTH || p.y<0 || p.y >= IChess.BOARD_HEIGHT ){
+            throw new OutOfBoardException();
+        }
+        
+        ChessType typ = currentBoard.getBoardPieceType(p);
+        if(typ == null){
+            throw new EmptyCellException();
+        }
+        else{
+            return typ;
+        }
     }
 
     @Override
     public ChessColor getPieceColor(ChessPosition p) throws EmptyCellException, OutOfBoardException {
-        throw new EmptyCellException();
+        if(p.x<0 || p.x >= IChess.BOARD_WIDTH || p.y<0 || p.y >= IChess.BOARD_HEIGHT ){
+            throw new OutOfBoardException();
+        }
+        
+        ChessColor col = currentBoard.getBoardPieceColor(p);
+        if(col == null){
+            throw new EmptyCellException();
+        }
+        else{
+            return col;
+        }
     }
 
     @Override
     public int getNbRemainingPieces(ChessColor color) {
-        return 0;
+        int nbrPieces = 0;
+        for(int i=0; i< IChess.BOARD_HEIGHT; i++){
+            for(int j=0; j< IChess.BOARD_WIDTH; j++){
+                ChessPosition cp = new ChessPosition(i,j);
+                if(currentBoard.getBoardPieceType(cp) != null && currentBoard.getBoardPieceColor(cp) == color){
+                    nbrPieces++;
+                }
+            }
+        }
+        
+        return nbrPieces;
     }
 
     @Override
-    public List<ChessPosition> getPieceMoves(ChessPosition p) {
-        return new ArrayList<ChessPosition>(); 
+    public List<ChessPosition> getPieceMoves(ChessPosition p)
+    {
+        return currentBoard.getMoveAvailableFromBoard(p);
     }
 
     @Override
