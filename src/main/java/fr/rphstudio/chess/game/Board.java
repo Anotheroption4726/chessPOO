@@ -77,12 +77,12 @@ public class Board
         }
     }
     
-    public ChessColor getPieceColor(ChessPosition p){
+    public ChessColor getBoardPieceColor(ChessPosition p){
         return this.table[p.y][p.x].getChessColor();
         //return ChessColor.CLR_BLACK;
     }
     
-    public ChessType getPieceType(ChessPosition p){
+    public ChessType getBoardPieceType(ChessPosition p){
         return this.table[p.y][p.x].getChessType();
         //return ChessType.TYP_KING;
     }
