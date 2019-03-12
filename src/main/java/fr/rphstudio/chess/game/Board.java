@@ -42,41 +42,48 @@ public class Board
                 }
                 
                 ChessType type = null;
+                IMove move = null;
                 if(i == IChess.BOARD_POS_Y_BLACK_PIECES || i == IChess.BOARD_POS_Y_WHITE_PIECES){
                     switch(j){
                         case IChess.BOARD_POS_X_QUEENSIDE_ROOK:
                         case IChess.BOARD_POS_X_KINGSIDE_ROOK:
                             type = ChessType.TYP_ROOK;
+                            move = new RookMove();
                             break;
 
                         case IChess.BOARD_POS_X_QUEENSIDE_KNIGHT:
                         case IChess.BOARD_POS_X_KINGSIDE_KNIGHT:
                             type = ChessType.TYP_KNIGHT;
+                            move = new KnightMove();
                             break;
 
                         case IChess.BOARD_POS_X_QUEENSIDE_BISHOP:
                         case IChess.BOARD_POS_X_KINGSIDE_BISHOP:
                             type = ChessType.TYP_BISHOP;
+                            move = new KnightMove();
                             break;
 
                         case IChess.BOARD_POS_X_QUEEN:
                             type = ChessType.TYP_QUEEN;
+                            move = new KnightMove();
                             break;
 
                         case IChess.BOARD_POS_X_KING:
                             type = ChessType.TYP_KING;
+                            move = new KnightMove();
                     }
                 }
                 
                 else if(i == IChess.BOARD_POS_Y_BLACK_PAWNS || i == IChess.BOARD_POS_Y_WHITE_PAWNS){
                     type = ChessType.TYP_PAWN;
+                    move = new KnightMove();
                 }
                 
                 else{
                     continue;
                 }
                 System.out.println(i+"-"+j);
-                table[i][j] = new Piece(color, type);
+                table[i][j] = new Piece(color, type, move);
             }
         }
     }

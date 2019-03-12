@@ -8,7 +8,6 @@ package fr.rphstudio.chess.game;
 import fr.rphstudio.chess.interf.IChess.ChessColor;
 import fr.rphstudio.chess.interf.IChess.ChessType;
 import fr.rphstudio.chess.interf.IChess.ChessPosition;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,11 +18,13 @@ public class Piece
 {
     private ChessColor color;
     private ChessType type;
+    private IMove pieceMove;
     
-    public Piece(ChessColor pickedColor, ChessType pickedType)
+    public Piece(ChessColor pickedColor, ChessType pickedType, IMove pickedMove)
     {
         this.color = pickedColor;
         this.type = pickedType;
+        this.pieceMove = pickedMove;
     }
     
     public ChessColor getChessColor()
@@ -38,8 +39,6 @@ public class Piece
     
     public List<ChessPosition> getMoveAvailableFromPiece(ChessPosition p)
     {    
-        List<ChessPosition> noobTest = new ArrayList<ChessPosition>();
-        noobTest.add(new ChessPosition(p.x, p.y - 1));
-        return noobTest;
+        return pieceMove.getPossibleMoves(p);
     }
 }
