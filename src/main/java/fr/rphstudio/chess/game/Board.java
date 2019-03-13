@@ -7,6 +7,7 @@ package fr.rphstudio.chess.game;
 
 import fr.rphstudio.chess.interf.IChess;
 import fr.rphstudio.chess.interf.IChess.ChessColor;
+import fr.rphstudio.chess.interf.IChess.ChessKingState;
 import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import fr.rphstudio.chess.interf.IChess.ChessType;
 import java.util.ArrayList;
@@ -114,8 +115,11 @@ public class Board
     }
     
     public List<ChessPosition> getMoveAvailableFromBoard(ChessPosition p)
-    {    
-        return this.table[p.y][p.x].getMoveAvailableFromPiece(p, this);
+    {   
+        if(this.table[p.y][p.x] != null ){
+            return this.table[p.y][p.x].getMoveAvailableFromPiece(p, this);
+        }
+        return new ArrayList<ChessPosition>();
     }
     
     public void moveBoardPiece(ChessPosition p0, ChessPosition p1){
@@ -145,5 +149,38 @@ public class Board
     {
         // CHANGE MOVE ARGUMENT !!!!!!
         this.table[p.y][p.x] = new Piece(color, ChessType.TYP_QUEEN, new KnightMove());
+    }
+    
+    private ChessPosition getKingPosition(ChessColor clr){
+        for(int i=0; i< IChess.BOARD_HEIGHT ; i++){
+            for(int j=0; j< IChess.BOARD_WIDTH ; j++){
+                ChessPosition pos = new ChessPosition(j,i);
+                if(this.getBoardPieceType(pos) == ChessType.TYP_KING && this.getBoardPieceColor(pos) == clr){
+                    return pos;
+                }
+            }
+        }
+        
+        return new ChessPosition();
+    }
+    
+    public ChessKingState getBoardKingState(ChessColor clr){
+        ChessPosition kingPos = this.getKingPosition(clr);
+        
+        for(int i=0; i< IChess.BOARD_HEIGHT ; i++){
+            for(int j=0; j< IChess.BOARD_WIDTH ; j++){
+                ChessPosition pos = new ChessPosition(j,i);
+                List<ChessPosition> cp_list = this.getMoveAvailableFromBoard(pos);
+                System.out.println(cp_list);
+                
+                for(int k=0; k<cp_list.size(); k++){
+                    if(kingPos.equals(cp_list.get(k))){
+                        return ChessKingState.KING_THREATEN;
+                    }
+                }
+            }
+        }
+        
+        return ChessKingState.KING_SAFE;
     }
 }
