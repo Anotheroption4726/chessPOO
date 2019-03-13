@@ -100,12 +100,27 @@ public class ChessModel implements IChess
     }
 
     @Override
-    public void movePiece(ChessPosition p0, ChessPosition p1) {
+    public void movePiece(ChessPosition p0, ChessPosition p1)
+    {
         currentBoard.moveBoardPiece(p0, p1);
+        
+        if (currentBoard.getBoardPieceType(p1) == ChessType.TYP_PAWN)
+        {
+            if (p1.y == 0 && currentBoard.getBoardPieceColor(p1) == ChessColor.CLR_WHITE)
+            {
+                currentBoard.switchPawnToQueen(p1, ChessColor.CLR_WHITE);
+            }
+            
+            if (p1.y == IChess.BOARD_HEIGHT - 1 && currentBoard.getBoardPieceColor(p1) == ChessColor.CLR_BLACK)
+            {
+                currentBoard.switchPawnToQueen(p1, ChessColor.CLR_BLACK);
+            }   
+        }
     }
 
     @Override
-    public ChessKingState getKingState(ChessColor color) {
+    public ChessKingState getKingState(ChessColor color)
+    {
         return ChessKingState.KING_SAFE;
     }
 

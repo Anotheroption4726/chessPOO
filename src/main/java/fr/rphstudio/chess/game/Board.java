@@ -140,4 +140,10 @@ public class Board
             return this.piecesPerduesBlanc;
         }
     }
+    
+    public void switchPawnToQueen(ChessPosition p, ChessColor color)
+    {
+        // CHANGE MOVE ARGUMENT !!!!!!
+        this.table[p.y][p.x] = new Piece(color, ChessType.TYP_QUEEN, new KnightMove());
+    }
 }

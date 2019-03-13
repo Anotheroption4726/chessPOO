@@ -19,9 +19,7 @@ public class RookMove implements IMove
 
     @Override
     public ArrayList<ChessPosition> getPossibleMoves(ChessPosition p, Board gameBoard)
-    {
-        //RAJOUTER L'EXCEPTION SI MOUVEMENT HORS DU BOARD
-        
+    {   
         ArrayList<ChessPosition> moveList = new ArrayList<ChessPosition>();
         moveList.add(new ChessPosition(p.x, p.y - 4));
         return moveList;
