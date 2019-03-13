@@ -22,6 +22,7 @@ public class Board
     private Piece[][] table = new Piece[8][8];
     private ArrayList<ChessType> piecesPerduesBlanc = new ArrayList<ChessType>();
     private ArrayList<ChessType> piecesPerduesNoir = new ArrayList<ChessType>();
+    private ArrayList<Turn> history = new ArrayList<Turn>();
     
     public Board()
     {
@@ -123,7 +124,11 @@ public class Board
     }
     
     public void moveBoardPiece(ChessPosition p0, ChessPosition p1){
+        Piece attacked=null;
+        
+        //Enregistre la pièce mangé si une attaque est effectué
         if(this.table[p1.y][p1.x] != null){
+            attacked = this.table[p1.y][p1.x];
             if(this.table[p1.y][p1.x].getChessColor() == IChess.ChessColor.CLR_BLACK){
                 this.piecesPerduesNoir.add(this.table[p1.y][p1.x].getChessType());
             }
@@ -131,6 +136,9 @@ public class Board
                 this.piecesPerduesBlanc.add(this.table[p1.y][p1.x].getChessType());
             }
         }
+        
+        //Enregistre dans l'historique le coup porté
+        history.add(new Turn(p0,this.table[p0.y][p0.x],p1,attacked));
         
         this.table[p1.y][p1.x] = this.table[p0.y][p0.x];
         this.table[p0.y][p0.x] = null;
@@ -171,7 +179,6 @@ public class Board
             for(int j=0; j< IChess.BOARD_WIDTH ; j++){
                 ChessPosition pos = new ChessPosition(j,i);
                 List<ChessPosition> cp_list = this.getMoveAvailableFromBoard(pos);
-                System.out.println(cp_list);
                 
                 for(int k=0; k<cp_list.size(); k++){
                     if(kingPos.equals(cp_list.get(k))){
@@ -182,5 +189,37 @@ public class Board
         }
         
         return ChessKingState.KING_SAFE;
+    }
+    
+    public boolean undoBoardLastMove() {
+        if(history.size() > 0){
+            Piece played = history.get(history.size()-1).getPlayed();
+            Piece attacked = history.get(history.size()-1).getAttacked();
+            ChessPosition start = history.get(history.size()-1).getStart();
+            ChessPosition end = history.get(history.size()-1).getEnd();
+            
+            this.table[start.y][start.x] = played;
+            
+            if(attacked == null){
+                this.table[end.y][end.x] = null;
+            }
+            else{
+                this.table[end.y][end.x] = attacked;
+                
+                if(attacked.getChessColor() == ChessColor.CLR_BLACK){
+                    this.piecesPerduesNoir.remove(this.piecesPerduesNoir.size()-1);
+                }
+                else{
+                    this.piecesPerduesBlanc.remove(this.piecesPerduesBlanc.size()-1);
+                }
+            }
+            
+            history.remove(history.size()-1);
+            
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
