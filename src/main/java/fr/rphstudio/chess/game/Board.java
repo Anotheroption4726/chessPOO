@@ -88,6 +88,11 @@ public class Board
         }
     }
     
+    public Piece[][] getTable ()
+    {
+        return table;
+    }
+    
     public ChessColor getBoardPieceColor(ChessPosition p){
         if(this.table[p.y][p.x] == null){
             return null;
