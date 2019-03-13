@@ -77,8 +77,8 @@ public class Board
 
                         case IChess.BOARD_POS_X_KING:
                             type = ChessType.TYP_KING;
-                            move = new KnightMove();
-                            // move = new KingMove();
+                            // move = new KnightMove();
+                            move = new KingMove();
                     }
                 }
                 

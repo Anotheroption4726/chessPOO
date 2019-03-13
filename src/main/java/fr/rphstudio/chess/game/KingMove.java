@@ -17,7 +17,10 @@ public class KingMove implements IMove
 
     @Override
     public ArrayList<IChess.ChessPosition> getPossibleMoves(IChess.ChessPosition pos, Board gameBoard) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        ArrayList<IChess.ChessPosition> moveList = new ArrayList<IChess.ChessPosition>();
+        
+        return moveList;
     }
     
 }

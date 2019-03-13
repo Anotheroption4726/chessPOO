@@ -116,8 +116,6 @@ public class KnightMove implements IMove
             }
         }
         
-
-        
         return moveList;
     }   
 }
