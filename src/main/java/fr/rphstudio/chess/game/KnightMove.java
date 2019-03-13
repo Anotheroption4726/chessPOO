@@ -29,7 +29,7 @@ public class KnightMove implements IMove
 
         
         // Create temp pos
-        tmpPos = new ChessPosition(p.x - 1,p.y - 2);
+        tmpPos = new ChessPosition(p.x - 1, p.y - 2);
         // Check tmp pos is in the board
         if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
         {
@@ -40,7 +40,7 @@ public class KnightMove implements IMove
         }
 
         // Create temp pos
-        tmpPos = new ChessPosition(p.x + 1,p.y + 2);
+        tmpPos = new ChessPosition(p.x + 1, p.y + 2);
         // Check tmp pos is in the board
         if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
         {
@@ -49,6 +49,73 @@ public class KnightMove implements IMove
                 moveList.add(tmpPos);
             }
         }
+        
+        // Create temp pos
+        tmpPos = new ChessPosition(p.x - 1, p.y + 2);
+        // Check tmp pos is in the board
+        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
+        {
+            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
+            {
+                moveList.add(tmpPos);
+            }
+        }
+        
+        // Create temp pos
+        tmpPos = new ChessPosition(p.x + 1, p.y - 2);
+        // Check tmp pos is in the board
+        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
+        {
+            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
+            {
+                moveList.add(tmpPos);
+            }
+        }
+        
+        // Create temp pos
+        tmpPos = new ChessPosition(p.x - 2, p.y - 1);
+        // Check tmp pos is in the board
+        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
+        {
+            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
+            {
+                moveList.add(tmpPos);
+            }
+        }
+
+        // Create temp pos
+        tmpPos = new ChessPosition(p.x + 2, p.y + 1);
+        // Check tmp pos is in the board
+        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
+        {
+            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
+            {
+                moveList.add(tmpPos);
+            }
+        }
+        
+        // Create temp pos
+        tmpPos = new ChessPosition(p.x - 2, p.y + 1);
+        // Check tmp pos is in the board
+        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
+        {
+            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
+            {
+                moveList.add(tmpPos);
+            }
+        }
+        
+        // Create temp pos
+        tmpPos = new ChessPosition(p.x + 2, p.y - 1);
+        // Check tmp pos is in the board
+        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
+        {
+            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
+            {
+                moveList.add(tmpPos);
+            }
+        }
+        
 
         
         return moveList;

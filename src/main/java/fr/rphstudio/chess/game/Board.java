@@ -52,7 +52,8 @@ public class Board
                         case IChess.BOARD_POS_X_QUEENSIDE_ROOK:
                         case IChess.BOARD_POS_X_KINGSIDE_ROOK:
                             type = ChessType.TYP_ROOK;
-                            move = new RookMove();
+                            move = new KnightMove();
+                            // move = new RookMove();
                             break;
 
                         case IChess.BOARD_POS_X_QUEENSIDE_KNIGHT:
@@ -65,22 +66,26 @@ public class Board
                         case IChess.BOARD_POS_X_KINGSIDE_BISHOP:
                             type = ChessType.TYP_BISHOP;
                             move = new KnightMove();
+                            // move = new BishopMove();
                             break;
 
                         case IChess.BOARD_POS_X_QUEEN:
                             type = ChessType.TYP_QUEEN;
                             move = new KnightMove();
+                            // move = new QueenMove();
                             break;
 
                         case IChess.BOARD_POS_X_KING:
                             type = ChessType.TYP_KING;
                             move = new KnightMove();
+                            // move = new KingMove();
                     }
                 }
                 
                 else if(i == IChess.BOARD_POS_Y_BLACK_PAWNS || i == IChess.BOARD_POS_Y_WHITE_PAWNS){
                     type = ChessType.TYP_PAWN;
                     move = new KnightMove();
+                    // move = new PawnMove();
                 }
                 
                 else{
