@@ -37,8 +37,8 @@ public class Piece
         return this.type;
     }
     
-    public List<ChessPosition> getMoveAvailableFromPiece(ChessPosition p)
+    public List<ChessPosition> getMoveAvailableFromPiece(ChessPosition p, Board gameBoard)
     {    
-        return pieceMove.getPossibleMoves(p);
+        return pieceMove.getPossibleMoves(p, gameBoard);
     }
 }

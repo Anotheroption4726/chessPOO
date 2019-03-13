@@ -14,5 +14,5 @@ import java.util.ArrayList;
  */
 public interface IMove 
 {
-    public ArrayList<ChessPosition> getPossibleMoves(ChessPosition pos/*, Board gameBoard*/);
+    public ArrayList<ChessPosition> getPossibleMoves(ChessPosition pos, Board gameBoard);
 }

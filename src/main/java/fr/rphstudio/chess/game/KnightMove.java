@@ -18,7 +18,7 @@ public class KnightMove implements IMove
 {
 
     @Override
-    public ArrayList<ChessPosition> getPossibleMoves(ChessPosition p/*, Board gameBoard*/)
+    public ArrayList<ChessPosition> getPossibleMoves(ChessPosition p, Board gameBoard)
     {
         ArrayList<ChessPosition> moveList = new ArrayList<ChessPosition>();
         moveList.add(new ChessPosition(p.x, p.y - 1));

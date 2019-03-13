@@ -108,6 +108,11 @@ public class Board
     
     public List<ChessPosition> getMoveAvailableFromBoard(ChessPosition p)
     {    
-        return this.table[p.y][p.x].getMoveAvailableFromPiece(p);
+        return this.table[p.y][p.x].getMoveAvailableFromPiece(p, this);
+    }
+    
+    public void moveBoardPiece(ChessPosition p0, ChessPosition p1){
+        this.table[p1.y][p1.x] = this.table[p0.y][p0.x];
+        this.table[p0.y][p0.x] = null;
     }
 }
