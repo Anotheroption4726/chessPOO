@@ -21,12 +21,7 @@ public class KnightMove implements IMove
     public ArrayList<ChessPosition> getPossibleMoves(ChessPosition p, Board gameBoard)
     {
         ArrayList<ChessPosition> moveList = new ArrayList<ChessPosition>();
-        
-        if (gameBoard.getTable()[p.y - 1][p.x] != null)
-        {
-            moveList.add(new ChessPosition(p.x, p.y - 1));
-        }
-        
+        moveList.add(new ChessPosition(p.x, p.y - 1));
         return moveList;
     }   
 }
