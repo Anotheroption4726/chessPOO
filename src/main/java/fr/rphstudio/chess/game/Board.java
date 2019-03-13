@@ -19,6 +19,8 @@ import java.util.List;
 public class Board
 {
     private Piece[][] table = new Piece[8][8];
+    private ArrayList<ChessType> piecesPerduesBlanc = new ArrayList<ChessType>();
+    private ArrayList<ChessType> piecesPerduesNoir = new ArrayList<ChessType>();
     
     public Board()
     {
@@ -117,7 +119,25 @@ public class Board
     }
     
     public void moveBoardPiece(ChessPosition p0, ChessPosition p1){
+        if(this.table[p1.y][p1.x] != null){
+            if(this.table[p1.y][p1.x].getChessColor() == IChess.ChessColor.CLR_BLACK){
+                this.piecesPerduesNoir.add(this.table[p1.y][p1.x].getChessType());
+            }
+            else if(this.table[p1.y][p1.x].getChessColor() == IChess.ChessColor.CLR_WHITE){
+                this.piecesPerduesBlanc.add(this.table[p1.y][p1.x].getChessType());
+            }
+        }
+        
         this.table[p1.y][p1.x] = this.table[p0.y][p0.x];
         this.table[p0.y][p0.x] = null;
+    }
+    
+    public List<ChessType> getBoardPiecesPerdues(ChessColor clr){
+        if(clr == IChess.ChessColor.CLR_BLACK){
+            return this.piecesPerduesNoir;
+        }
+        else{
+            return this.piecesPerduesBlanc;
+        }
     }
 }
