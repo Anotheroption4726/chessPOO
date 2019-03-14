@@ -26,6 +26,10 @@ public class Board
     private ArrayList<ChessType> piecesPerduesBlanc = new ArrayList<ChessType>();
     private ArrayList<ChessType> piecesPerduesNoir = new ArrayList<ChessType>();
     private ArrayList<Turn> history = new ArrayList<Turn>();
+
+    private long currentTime;
+    private long blackTime;
+    private long whiteTime;
     
     /**
      * Constructor that create the board and place each game's pieces
@@ -33,6 +37,10 @@ public class Board
      */
     public Board()
     {
+        this.currentTime = System.currentTimeMillis();
+        this.blackTime = 0;
+        this.whiteTime = 0;
+
         for (int i = 0; i < IChess.BOARD_HEIGHT; i++)
         {
             for (int j = 0; j < IChess.BOARD_WIDTH; j++)
@@ -171,6 +179,16 @@ public class Board
      */
     public void moveBoardPiece(ChessPosition p0, ChessPosition p1){
         Piece attacked=null;
+        long tmpTime = System.currentTimeMillis() - this.currentTime;
+
+        //Gestion du temps
+        if(this.getBoardPieceColor(p0) == ChessColor.CLR_WHITE){
+            this.whiteTime += (System.currentTimeMillis() - this.currentTime);
+        }
+        else{
+            this.blackTime += (System.currentTimeMillis() - this.currentTime);
+        }
+        this.currentTime = System.currentTimeMillis();
         
         //Enregistre la pièce mangé si une attaque est effectué
         if(this.table[p1.y][p1.x] != null){
@@ -184,7 +202,7 @@ public class Board
         }
         
         //Enregistre dans l'historique le coup porté
-        history.add(new Turn(p0,this.table[p0.y][p0.x],p1,attacked));
+        history.add(new Turn(p0,this.table[p0.y][p0.x],p1,attacked, tmpTime));
         
         this.table[p1.y][p1.x] = this.table[p0.y][p0.x];
         this.table[p0.y][p0.x] = null;
@@ -268,6 +286,7 @@ public class Board
             Piece attacked = history.get(history.size()-1).getAttacked();
             ChessPosition start = history.get(history.size()-1).getStart();
             ChessPosition end = history.get(history.size()-1).getEnd();
+            long turnTime = history.get(history.size()-1).getTurnTime();
             
             this.table[start.y][start.x] = played;
             
@@ -278,19 +297,43 @@ public class Board
                 this.table[end.y][end.x] = attacked;
                 
                 if(attacked.getChessColor() == ChessColor.CLR_BLACK){
+                    this.whiteTime -= turnTime;
                     this.piecesPerduesNoir.remove(this.piecesPerduesNoir.size()-1);
                 }
                 else{
+                    this.blackTime -= turnTime;
                     this.piecesPerduesBlanc.remove(this.piecesPerduesBlanc.size()-1);
                 }
             }
             
+            this.currentTime = System.currentTimeMillis();
             history.remove(history.size()-1);
             
             return true;
         }
         else{
             return false;
+        }
+    }
+
+    public long getBoardPlayerDuration(ChessColor color, boolean isPlaying)
+    {
+        if(color == ChessColor.CLR_BLACK){
+            if(isPlaying){
+                return System.currentTimeMillis() - this.currentTime + this.blackTime;
+            }
+            else{
+                return this.blackTime;
+            }
+            
+        }
+        else{
+            if(isPlaying){
+                return System.currentTimeMillis() - this.currentTime + this.whiteTime;
+            }
+            else{
+                return this.whiteTime;
+            }
         }
     }
 }
