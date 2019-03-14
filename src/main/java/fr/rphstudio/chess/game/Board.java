@@ -212,8 +212,7 @@ public class Board
      */
     public void switchPawnToQueen(ChessPosition p, ChessColor color)
     {
-        // CHANGE MOVE ARGUMENT !!!!!!
-        this.table[p.y][p.x] = new Piece(color, ChessType.TYP_QUEEN, new KnightMove());
+        this.table[p.y][p.x] = new Piece(color, ChessType.TYP_QUEEN, new QueenMove());
     }
     
     /**
