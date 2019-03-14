@@ -6,6 +6,9 @@
 package fr.rphstudio.chess.game;
 
 import fr.rphstudio.chess.interf.IChess;
+import static fr.rphstudio.chess.interf.IChess.BOARD_HEIGHT;
+import static fr.rphstudio.chess.interf.IChess.BOARD_WIDTH;
+import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +20,7 @@ public class QueenMove implements IMove
 
     @Override
     public ArrayList<IChess.ChessPosition> getPossibleMoves(IChess.ChessPosition p, Board gameBoard) {
+        
         IChess.ChessColor color = gameBoard.getBoardPieceColor(p);
         ArrayList<IChess.ChessPosition> moveList = new ArrayList<IChess.ChessPosition>();
         
@@ -62,6 +66,107 @@ public class QueenMove implements IMove
                 break;
             }
             moveList.add(new IChess.ChessPosition(p.x,y)); 
+        }
+        
+        
+        
+        
+        int verticalCount = 1;
+        
+        for(int x = p.x + 1; x < BOARD_WIDTH; x++)
+        {
+            if (p.y - verticalCount >= 0)
+            {
+                if(gameBoard.getTable()[p.y - verticalCount][x] != null)
+                {
+                    if(gameBoard.getTable()[p.y - verticalCount][x].getChessColor() != color)
+                    {
+                        moveList.add(new ChessPosition(x, p.y - verticalCount));
+                    }
+                    break;
+                }
+                moveList.add(new ChessPosition(x, p.y - verticalCount));
+                verticalCount++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        
+        // Setting vertical Increment
+        verticalCount = 1;
+        
+        for(int x = p.x + 1; x < BOARD_WIDTH; x++)
+        {
+            if (p.y + verticalCount < BOARD_HEIGHT)
+            {
+                if(gameBoard.getTable()[p.y + verticalCount][x] != null)
+                {
+                    if(gameBoard.getTable()[p.y + verticalCount][x].getChessColor() != color)
+                    {
+                        moveList.add(new ChessPosition(x, p.y + verticalCount));
+                    }
+                    break;
+                }
+                moveList.add(new ChessPosition(x, p.y + verticalCount));
+                verticalCount++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        
+        // Setting vertical Increment
+        verticalCount = 1;
+        
+        for(int x = p.x - 1; x >= 0; x--)
+        {
+            if (p.y + verticalCount < BOARD_HEIGHT)
+            {
+                if(gameBoard.getTable()[p.y + verticalCount][x] != null)
+                {
+                    if(gameBoard.getTable()[p.y + verticalCount][x].getChessColor() != color)
+                    {
+                        moveList.add(new ChessPosition(x, p.y + verticalCount));
+                    }
+                    break;
+                }
+                moveList.add(new ChessPosition(x, p.y + verticalCount));
+                verticalCount++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        
+        // Setting vertical Increment
+        verticalCount = 1;
+        
+        for(int x = p.x - 1; x >= 0; x--)
+        {
+            if (p.y - verticalCount >= 0)
+            {
+                if(gameBoard.getTable()[p.y - verticalCount][x] != null)
+                {
+                    if(gameBoard.getTable()[p.y - verticalCount][x].getChessColor() != color)
+                    {
+                        moveList.add(new ChessPosition(x, p.y - verticalCount));
+                    }
+                    break;
+                }
+                moveList.add(new ChessPosition(x, p.y - verticalCount));
+                verticalCount++;
+            }
+            else
+            {
+                break;
+            }
         }
         
         return moveList;
