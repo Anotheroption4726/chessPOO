@@ -21,7 +21,7 @@ public class RookMove implements IMove
     @Override
     public ArrayList<ChessPosition> getPossibleMoves(ChessPosition p, Board gameBoard)
     {   
-        ChessColor color = gameBoard.getTable()[p.y][p.x].getChessColor();
+        ChessColor color = gameBoard.getBoardPieceColor(p);
         ArrayList<ChessPosition> moveList = new ArrayList<ChessPosition>();
         
         //droite
