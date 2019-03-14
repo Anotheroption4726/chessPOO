@@ -11,6 +11,7 @@ import fr.rphstudio.chess.interf.IChess.ChessKingState;
 import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import fr.rphstudio.chess.interf.IChess.ChessType;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -94,6 +95,12 @@ public class Board
         }
     }
     
+    public Board(Piece[][] copyTable){
+        for(int i=0; i<copyTable.length; i++)
+            for(int j=0; j<copyTable[i].length; j++)
+              this.table[i][j]=copyTable[i][j];
+    }
+    
     public Piece[][] getTable ()
     {
         return table;
@@ -121,6 +128,7 @@ public class Board
     {   
         if(this.table[p.y][p.x] != null ){
             return this.table[p.y][p.x].getMoveAvailableFromPiece(p, this);
+           
         }
         return new ArrayList<ChessPosition>();
     }

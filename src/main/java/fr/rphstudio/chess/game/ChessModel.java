@@ -96,7 +96,20 @@ public class ChessModel implements IChess
     @Override
     public List<ChessPosition> getPieceMoves(ChessPosition p)
     {
-        return currentBoard.getMoveAvailableFromBoard(p);
+        //On vérifie que les mouvements occasionnés n'occasionnent pas un échec chez soi
+        List<ChessPosition> availableMoves = new ArrayList<ChessPosition>();
+        List<ChessPosition> moves = currentBoard.getMoveAvailableFromBoard(p);
+        
+        ChessColor color = currentBoard.getBoardPieceColor(p);
+        for(int i=0; i<moves.size(); i++){
+            Board dummy = new Board(currentBoard.getTable());
+            dummy.moveBoardPiece(p, moves.get(i));
+            if(dummy.getBoardKingState(color) == ChessKingState.KING_SAFE){
+                availableMoves.add(moves.get(i));
+            }
+        }
+            
+        return availableMoves;
     }
 
     @Override
