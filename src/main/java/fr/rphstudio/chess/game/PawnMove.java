@@ -42,7 +42,7 @@ public class PawnMove implements IMove
         }
         */
         
-        if((color == ChessColor.CLR_WHITE && p.y == 6) || (color == ChessColor.CLR_BLACK && p.y == 1)){
+        if((color == ChessColor.CLR_WHITE && p.y == 6 || color == ChessColor.CLR_BLACK && p.y == 1) && gameBoard.getTable()[p.y + direction][p.x] == null){
             moveList.add(new ChessPosition(p.x, p.y + direction*2));
         }
         
