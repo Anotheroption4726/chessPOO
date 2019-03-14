@@ -64,8 +64,8 @@ public class Board
                         case IChess.BOARD_POS_X_QUEENSIDE_BISHOP:
                         case IChess.BOARD_POS_X_KINGSIDE_BISHOP:
                             type = ChessType.TYP_BISHOP;
-                            move = new KnightMove();
-                            // move = new BishopMove();
+                            // move = new KnightMove();
+                            move = new BishopMove();
                             break;
 
                         case IChess.BOARD_POS_X_QUEEN:
