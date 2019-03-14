@@ -36,9 +36,15 @@ public class PawnMove implements IMove
         }
         
         //Déplacement avant
-        if(gameBoard.getTable()[p.y + direction][p.x] == null){
-            moveList.add(new ChessPosition(p.x, p.y + direction));
+        try{
+            if(gameBoard.getTable()[p.y + direction][p.x] == null){
+                moveList.add(new ChessPosition(p.x, p.y + direction));
+            }
         }
+        catch(Exception e){
+
+        }
+        
         
         //Premier déplacement
         //TODO mettre en place un first move plus propre
@@ -48,30 +54,40 @@ public class PawnMove implements IMove
         }
         */
         
-        if((color == ChessColor.CLR_WHITE && p.y == 6 || color == ChessColor.CLR_BLACK && p.y == 1) &&
-                gameBoard.getTable()[p.y + direction][p.x] == null &&
-                gameBoard.getTable()[p.y + direction*2][p.x] == null){
-            moveList.add(new ChessPosition(p.x, p.y + direction*2));
+        if((color == ChessColor.CLR_WHITE && p.y == 6) || (color == ChessColor.CLR_BLACK && p.y == 1)){
+            if(gameBoard.getTable()[p.y + direction][p.x] == null && gameBoard.getTable()[p.y + direction*2][p.x] == null){
+                moveList.add(new ChessPosition(p.x, p.y + direction*2));
+            }
         }
         
         //Attaque diagonale gauche
-        if(p.x - 1 >= 0){
-            if(gameBoard.getTable()[p.y + direction][p.x-1] != null){
-                ChessPosition pos = new ChessPosition(p.x-1,p.y + direction);
-                if(gameBoard.getBoardPieceColor(pos) != color){
-                    moveList.add(new ChessPosition(p.x-1, p.y + direction));
+        try{
+            if(p.x - 1 >= 0){
+                if(gameBoard.getTable()[p.y + direction][p.x-1] != null){
+                    ChessPosition pos = new ChessPosition(p.x-1,p.y + direction);
+                    if(gameBoard.getBoardPieceColor(pos) != color){
+                        moveList.add(new ChessPosition(p.x-1, p.y + direction));
+                    }
                 }
             }
         }
+        catch(Exception e){
+
+        }
         
         //Attaque diagonale droite
-        if(p.x + 1 < IChess.BOARD_WIDTH){
-            if(gameBoard.getTable()[p.y + direction][p.x+1] != null){
-                ChessPosition pos = new ChessPosition(p.x+1,p.y + direction);
-                if(gameBoard.getBoardPieceColor(pos) != color){
-                    moveList.add(new ChessPosition(p.x+1, p.y + direction));
+        try{
+            if(p.x + 1 <= IChess.BOARD_WIDTH-1){
+                if(gameBoard.getTable()[p.y + direction][p.x+1] != null){
+                    ChessPosition pos = new ChessPosition(p.x+1,p.y + direction);
+                    if(gameBoard.getBoardPieceColor(pos) != color){
+                        moveList.add(new ChessPosition(p.x+1, p.y + direction));
+                    }
                 }
             }
+        }
+        catch(Exception e){
+
         }
         
         return moveList;
