@@ -20,10 +20,16 @@ public class ChessModel implements IChess
 {
     private static ChessModel instance;
     private static Board currentBoard;
+
+    private long currentTime;
+    private long blackTime;
+    private long whiteTime;
     
     private ChessModel()
     {
-        
+        this.currentTime = System.currentTimeMillis();
+        this.blackTime = 0;
+        this.whiteTime = 0;
     }
     
     public static ChessModel getInstance()
@@ -41,12 +47,32 @@ public class ChessModel implements IChess
     {
         System.out.println("reinit");
         currentBoard = new Board();
+        
+        this.currentTime = System.currentTimeMillis();
+        this.blackTime = 0;
+        this.whiteTime = 0;
     }
     
     @Override
     public long getPlayerDuration(ChessColor color, boolean isPlaying)
     {
-        return 0;
+        if(color == ChessColor.CLR_BLACK){
+            if(isPlaying){
+                return System.currentTimeMillis() - this.currentTime + this.blackTime;
+            }
+            else{
+                return this.blackTime;
+            }
+            
+        }
+        else{
+            if(isPlaying){
+                return System.currentTimeMillis() - this.currentTime + this.whiteTime;
+            }
+            else{
+                return this.whiteTime;
+            }
+        }
     }
 
     @Override
@@ -116,6 +142,15 @@ public class ChessModel implements IChess
     @Override
     public void movePiece(ChessPosition p0, ChessPosition p1)
     {
+        //Gestion du temps
+        if(currentBoard.getBoardPieceColor(p0) == ChessColor.CLR_WHITE){
+            this.whiteTime += (System.currentTimeMillis() - this.currentTime);
+        }
+        else{
+            this.blackTime += (System.currentTimeMillis() - this.currentTime);
+        }
+        this.currentTime = System.currentTimeMillis();
+
         currentBoard.moveBoardPiece(p0, p1);
         
         if (currentBoard.getBoardPieceType(p1) == ChessType.TYP_PAWN)
