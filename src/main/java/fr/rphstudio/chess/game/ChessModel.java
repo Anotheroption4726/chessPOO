@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Class ChessModel basec on the interface
+ * Please refer to the interface for the javadoc
  * @author charneauadrien
  */
 public class ChessModel implements IChess

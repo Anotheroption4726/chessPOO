@@ -15,8 +15,10 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- *
- * @author charneauadrien
+ * Class used to contain the main board, pieces and game's history
+ * The most important class here
+ * use it wisely...
+ * @author charneauadrien and ludovickotusik
  */
 public class Board
 {
@@ -25,6 +27,10 @@ public class Board
     private ArrayList<ChessType> piecesPerduesNoir = new ArrayList<ChessType>();
     private ArrayList<Turn> history = new ArrayList<Turn>();
     
+    /**
+     * Constructor that create the board and place each game's pieces
+     * the official way.
+     */
     public Board()
     {
         for (int i = 0; i < IChess.BOARD_HEIGHT; i++)
@@ -95,17 +101,30 @@ public class Board
         }
     }
     
+    /**
+     * Constructor that create the board by copying the table used on the paramater
+     * @param copyTable - table that contains pieces : used to copy the table
+     */
     public Board(Piece[][] copyTable){
         for(int i=0; i<copyTable.length; i++)
             for(int j=0; j<copyTable[i].length; j++)
               this.table[i][j]=copyTable[i][j];
     }
     
+    /**
+     * Accessor to the table
+     * @return the table that contains the pieces
+     */
     public Piece[][] getTable ()
     {
         return table;
     }
     
+    /**
+     * Method that return the piece color from a position
+     * @param p - Position checked
+     * @return The color from the checked position
+     */
     public ChessColor getBoardPieceColor(ChessPosition p){
         if(this.table[p.y][p.x] == null){
             return null;
@@ -115,6 +134,11 @@ public class Board
         }
     }
     
+    /**
+     * Method that return the piece type from a position
+     * @param p - Position checked
+     * @return The type piece from the checked position
+     */
     public ChessType getBoardPieceType(ChessPosition p){
         if(this.table[p.y][p.x] == null){
             return null;
@@ -124,6 +148,11 @@ public class Board
         }
     }
     
+    /**
+     * Method that return the list moves a piece can perform selecting it position
+     * @param p - Position checked
+     * @return The list of positions that piece can person
+     */
     public List<ChessPosition> getMoveAvailableFromBoard(ChessPosition p)
     {   
         if(this.table[p.y][p.x] != null ){
@@ -133,6 +162,13 @@ public class Board
         return new ArrayList<ChessPosition>();
     }
     
+    /**
+     * Method that move a piece from the start to selected position
+     * Attacks work
+     * Each move are recorded in the history
+     * @param p0 Starting position (The piece selected by the user)
+     * @param p1 Ending position (The position the user want to move/attack)
+     */
     public void moveBoardPiece(ChessPosition p0, ChessPosition p1){
         Piece attacked=null;
         
@@ -154,6 +190,11 @@ public class Board
         this.table[p0.y][p0.x] = null;
     }
     
+    /**
+     * Accessor to attacked pieces depend on it color
+     * @param clr - Color you want the piece from
+     * @return A list of eaten pieces from reversed time (the last attacked appears last)
+     */
     public List<ChessType> getBoardPiecesPerdues(ChessColor clr){
         if(clr == IChess.ChessColor.CLR_BLACK){
             return this.piecesPerduesNoir;
@@ -163,12 +204,23 @@ public class Board
         }
     }
     
+    /**
+     * Method that change a pawn to a queen
+     * Not the official rule from chess but easier to manage
+     * @param p - The position to check on
+     * @param color - The piece color
+     */
     public void switchPawnToQueen(ChessPosition p, ChessColor color)
     {
         // CHANGE MOVE ARGUMENT !!!!!!
         this.table[p.y][p.x] = new Piece(color, ChessType.TYP_QUEEN, new KnightMove());
     }
     
+    /**
+     * Method that return the king's position
+     * @param clr - The king's color
+     * @return King's position
+     */
     private ChessPosition getKingPosition(ChessColor clr){
         for(int i=0; i< IChess.BOARD_HEIGHT ; i++){
             for(int j=0; j< IChess.BOARD_WIDTH ; j++){
@@ -182,6 +234,11 @@ public class Board
         return new ChessPosition();
     }
     
+    /**
+     * Method that check if the king is currently chess
+     * @param clr - The king's color to check
+     * @return The king's state
+     */
     public ChessKingState getBoardKingState(ChessColor clr){
         ChessPosition kingPos = this.getKingPosition(clr);
         
@@ -201,6 +258,11 @@ public class Board
         return ChessKingState.KING_SAFE;
     }
     
+    /**
+     * Method that undo the last move
+     * Can be performed multiple times
+     * @return if the undo was properly done (like you can't on the first game move)
+     */
     public boolean undoBoardLastMove() {
         if(history.size() > 0){
             Piece played = history.get(history.size()-1).getPlayed();

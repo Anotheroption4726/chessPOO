@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class used to generate King's movements
+ * Class used to generate Rook's movements
  * @author charneauadrien
  */
 public class RookMove implements IMove
