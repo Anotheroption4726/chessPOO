@@ -5,7 +5,8 @@
  */
 package fr.rphstudio.chess.game;
 
-import fr.rphstudio.chess.interf.IChess;
+import static fr.rphstudio.chess.interf.IChess.BOARD_HEIGHT;
+import static fr.rphstudio.chess.interf.IChess.BOARD_WIDTH;
 import fr.rphstudio.chess.interf.IChess.ChessColor;
 import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import java.util.ArrayList;
@@ -31,91 +32,63 @@ public class KnightMove implements IMove
         // Create temp pos
         tmpPos = new ChessPosition(p.x - 1, p.y - 2);
         // Check tmp pos is in the board
-        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
-        {
-            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
-            {
-                moveList.add(tmpPos);
-            }
-        }
+        AddMoveList(tmpPos, gameBoard, myColor, moveList);
+        
 
         // Create temp pos
         tmpPos = new ChessPosition(p.x + 1, p.y + 2);
         // Check tmp pos is in the board
-        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
-        {
-            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
-            {
-                moveList.add(tmpPos);
-            }
-        }
+        AddMoveList(tmpPos, gameBoard, myColor, moveList);
+        
         
         // Create temp pos
         tmpPos = new ChessPosition(p.x - 1, p.y + 2);
         // Check tmp pos is in the board
-        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
-        {
-            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
-            {
-                moveList.add(tmpPos);
-            }
-        }
+        AddMoveList(tmpPos, gameBoard, myColor, moveList);
+        
         
         // Create temp pos
         tmpPos = new ChessPosition(p.x + 1, p.y - 2);
         // Check tmp pos is in the board
-        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
-        {
-            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
-            {
-                moveList.add(tmpPos);
-            }
-        }
+        AddMoveList(tmpPos, gameBoard, myColor, moveList);
+        
         
         // Create temp pos
         tmpPos = new ChessPosition(p.x - 2, p.y - 1);
         // Check tmp pos is in the board
-        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
-        {
-            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
-            {
-                moveList.add(tmpPos);
-            }
-        }
+        AddMoveList(tmpPos, gameBoard, myColor, moveList);
+        
 
         // Create temp pos
         tmpPos = new ChessPosition(p.x + 2, p.y + 1);
         // Check tmp pos is in the board
-        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
-        {
-            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
-            {
-                moveList.add(tmpPos);
-            }
-        }
+        AddMoveList(tmpPos, gameBoard, myColor, moveList);
+        
         
         // Create temp pos
         tmpPos = new ChessPosition(p.x - 2, p.y + 1);
         // Check tmp pos is in the board
-        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
-        {
-            if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
-            {
-                moveList.add(tmpPos);
-            }
-        }
+        AddMoveList(tmpPos, gameBoard, myColor, moveList);
+        
         
         // Create temp pos
         tmpPos = new ChessPosition(p.x + 2, p.y - 1);
         // Check tmp pos is in the board
-        if(tmpPos.x >= 0 && tmpPos.x < IChess.BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < IChess.BOARD_HEIGHT)
+        AddMoveList(tmpPos, gameBoard, myColor, moveList);
+        
+        
+        return moveList;
+    }
+    
+    private void AddMoveList (ChessPosition tmpPos, Board gameBoard, ChessColor myColor, ArrayList<ChessPosition> moveList)
+    {
+        if(tmpPos.x >= 0 && tmpPos.x < BOARD_WIDTH && tmpPos.y >= 0 && tmpPos.y < BOARD_HEIGHT)
         {
             if(gameBoard.getBoardPieceColor(tmpPos) != myColor)
             {
                 moveList.add(tmpPos);
             }
         }
-        
-        return moveList;
-    }   
+    }
+    
 }
