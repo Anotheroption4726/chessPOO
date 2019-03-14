@@ -83,8 +83,7 @@ public class Board
                 
                 else if(i == IChess.BOARD_POS_Y_BLACK_PAWNS || i == IChess.BOARD_POS_Y_WHITE_PAWNS){
                     type = ChessType.TYP_PAWN;
-                    move = new KnightMove();
-                    // move = new PawnMove();
+                    move = new PawnMove();
                 }
                 
                 else{
