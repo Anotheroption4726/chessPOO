@@ -13,11 +13,17 @@ import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import java.util.ArrayList;
 
 /**
- *
+ * Class used to generate Bishop's movements
  * @author charneauadrien
  */
 public class BishopMove implements IMove
 {
+        /**
+     * Method that return the moves a Bishop can perform at this position
+     * @param p - the position to check moves
+     * @param gameBoard - the board the piece operate
+     * @return a list of positions the piece can perform here
+     */
     @Override
     public ArrayList<IChess.ChessPosition> getPossibleMoves(IChess.ChessPosition p, Board gameBoard)
     {

@@ -8,8 +8,12 @@ package fr.rphstudio.chess.game;
 import fr.rphstudio.chess.interf.IChess.ChessPosition;
 
 /**
- *
- * @author kotusikludovic
+ * Class used for recording turns.
+ * It contains :
+ * - The start piece position
+ * - The end piece position
+ * - The piece played
+ * - The piece (if any) attacked
  */
 public class Turn {
     private ChessPosition start;
@@ -17,6 +21,13 @@ public class Turn {
     private ChessPosition end;
     private Piece attacked;
     
+    /**
+     * Constructor that need the turn based informations to work
+     * @param start - start piece position
+     * @param played - The moving/attacking piece
+     * @param end - end piece position
+     * @param attacked  - The piece (if any) that is attacked
+     */
     public Turn(ChessPosition start, Piece played, ChessPosition end, Piece attacked){
         this.start = start;
         this.played = played;
@@ -24,18 +35,34 @@ public class Turn {
         this.attacked = attacked;
     }
     
+    /**
+     * This method is an accessor for the piece start position
+     * @return the start position
+     */
     public ChessPosition getStart(){
         return this.start;
     }
     
+    /**
+     * This method is an accessor for the piece that move/attack
+     * @return the moving piece
+     */
     public Piece getPlayed(){
         return this.played;
     }
     
+    /**
+     * This method is an accessor for the piece end position
+     * @return the end position
+     */
     public ChessPosition getEnd(){
         return this.end;
     }
     
+    /**
+     * This method is an accessor for the piece that being attacked
+     * @return the attacked piece
+     */
     public Piece getAttacked(){
         return this.attacked;
     }

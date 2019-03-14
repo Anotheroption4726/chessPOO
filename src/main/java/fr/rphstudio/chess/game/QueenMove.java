@@ -12,12 +12,18 @@ import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import java.util.ArrayList;
 
 /**
- *
+ * Class used to generate Queen's movements
  * @author charneauadrien
  */
 public class QueenMove implements IMove
 {
 
+    /**
+     * Method that return the moves a queen can perform at this position
+     * @param p - the position to check moves
+     * @param gameBoard - the board the piece operate
+     * @return a list of positions the piece can perform here
+     */
     @Override
     public ArrayList<IChess.ChessPosition> getPossibleMoves(IChess.ChessPosition p, Board gameBoard) {
         

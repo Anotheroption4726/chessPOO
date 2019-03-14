@@ -14,11 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Class used to generate King's movements
  * @author charneauadrien
  */
 public class KingMove implements IMove
 {
+    /**
+     * Method that return the moves a king can perform at this position
+     * Please notice that the chess isn't verified as is
+     * @param p - the position to check moves
+     * @param gameBoard - the board the piece operate
+     * @return a list of positions the piece can perform here
+     */
     @Override
     public ArrayList<IChess.ChessPosition> getPossibleMoves(ChessPosition p, Board gameBoard)
     {

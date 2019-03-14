@@ -11,13 +11,19 @@ import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import java.util.ArrayList;
 
 /**
- *
- * @author charneauadrien
+ * Class used to generate Pawn's movements
+ * @author ludovicKotusik
  */
 public class PawnMove implements IMove 
 {
     private boolean firstMove = false;
     
+    /**
+     * Method that return the moves a pawn can perform at this position
+     * @param p - the position to check moves
+     * @param gameBoard - the board the piece operate
+     * @return a list of positions the piece can perform here
+     */
     @Override
     public ArrayList<IChess.ChessPosition> getPossibleMoves(IChess.ChessPosition p, Board gameBoard) {
         IChess.ChessColor color = gameBoard.getBoardPieceColor(p);

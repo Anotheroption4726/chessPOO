@@ -12,12 +12,18 @@ import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import java.util.ArrayList;
 
 /**
- *
+ * Class used to generate Knight's movements
  * @author charneauadrien
  */
 public class KnightMove implements IMove
 {
 
+    /**
+     * Method that return the moves a knight can perform at this position
+     * @param p - the position to check moves
+     * @param gameBoard - the board the piece operate
+     * @return a list of positions the piece can perform here
+     */
     @Override
     public ArrayList<ChessPosition> getPossibleMoves(ChessPosition p, Board gameBoard)
     {
