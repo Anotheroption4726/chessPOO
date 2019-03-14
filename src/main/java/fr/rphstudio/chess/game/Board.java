@@ -52,8 +52,7 @@ public class Board
                         case IChess.BOARD_POS_X_QUEENSIDE_ROOK:
                         case IChess.BOARD_POS_X_KINGSIDE_ROOK:
                             type = ChessType.TYP_ROOK;
-                            move = new KnightMove();
-                            // move = new RookMove();
+                            move = new RookMove();
                             break;
 
                         case IChess.BOARD_POS_X_QUEENSIDE_KNIGHT:
