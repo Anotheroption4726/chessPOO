@@ -70,8 +70,7 @@ public class Board
 
                         case IChess.BOARD_POS_X_QUEEN:
                             type = ChessType.TYP_QUEEN;
-                            move = new KnightMove();
-                            // move = new QueenMove();
+                            move = new QueenMove();
                             break;
 
                         case IChess.BOARD_POS_X_KING:
