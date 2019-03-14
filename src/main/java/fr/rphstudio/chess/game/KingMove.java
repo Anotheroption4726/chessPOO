@@ -11,6 +11,7 @@ import static fr.rphstudio.chess.interf.IChess.BOARD_WIDTH;
 import fr.rphstudio.chess.interf.IChess.ChessColor;
 import fr.rphstudio.chess.interf.IChess.ChessPosition;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -34,13 +35,11 @@ public class KingMove implements IMove
         // Check tmp pos is in the board
         AddMoveList(tmpPos, gameBoard, myColor, moveList);
         
-        
         // Create temp pos
         tmpPos = new ChessPosition(p.x, p.y + 1);
         
         // Check tmp pos is in the board
         AddMoveList(tmpPos, gameBoard, myColor, moveList);
-        
         
         // Create temp pos
         tmpPos = new ChessPosition(p.x + 1, p.y);
@@ -48,13 +47,11 @@ public class KingMove implements IMove
         // Check tmp pos is in the board
         AddMoveList(tmpPos, gameBoard, myColor, moveList);
         
-        
         // Create temp pos
         tmpPos = new ChessPosition(p.x - 1, p.y);
         
         // Check tmp pos is in the board
         AddMoveList(tmpPos, gameBoard, myColor, moveList);
-        
         
         // Create temp pos
         tmpPos = new ChessPosition(p.x - 1, p.y - 1);
@@ -62,13 +59,11 @@ public class KingMove implements IMove
         // Check tmp pos is in the board
         AddMoveList(tmpPos, gameBoard, myColor, moveList);
         
-        
         // Create temp pos
         tmpPos = new ChessPosition(p.x - 1, p.y + 1);
         
         // Check tmp pos is in the board
         AddMoveList(tmpPos, gameBoard, myColor, moveList);
-        
         
         // Create temp pos
         tmpPos = new ChessPosition(p.x + 1, p.y - 1);
@@ -76,13 +71,20 @@ public class KingMove implements IMove
         // Check tmp pos is in the board
         AddMoveList(tmpPos, gameBoard, myColor, moveList);
         
-        
         // Create temp pos
         tmpPos = new ChessPosition(p.x + 1, p.y + 1);
         
         // Check tmp pos is in the board
         AddMoveList(tmpPos, gameBoard, myColor, moveList);
         
+        //Déplacement du petit Roque
+        /*
+        if(p.equals(new ChessPosition(4,7)) &&
+                gameBoard.getTable()[7][5] == null &&
+                gameBoard.getTable()[7][6] == null){
+            moveList.add(new ChessPosition(7,7));
+        }
+        */
         
         return moveList;
     }
