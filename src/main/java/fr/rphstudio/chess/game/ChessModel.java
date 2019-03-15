@@ -21,6 +21,7 @@ public class ChessModel implements IChess
     private static ChessModel instance;
     private static Board currentBoard;
     
+    
     private ChessModel()
     {
     }
